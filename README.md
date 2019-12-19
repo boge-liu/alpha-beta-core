@@ -10,7 +10,7 @@ To build index with ComShrDecom:
 ./abcore -ComShrDecom path_to_graph (for example: ./abcore -ComShrDecom ../data/example)
 
 To build index with ParallelDecom:
-./abcore -ParallelDecom path_to_graph (for example: ./abcore -ParallelDecom ../data/example)
+./abcore -ParallelDecom path_to_graph num_cores (for example: ./abcore -ParallelDecom ../data/example 20)
 
 To query alpha beta core using BiCoreIndex:
 ./abcore -Query path_to_graph alpha beta (for example: ./abcore -Query ../data/example 2 3)
