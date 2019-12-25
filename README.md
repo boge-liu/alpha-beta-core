@@ -26,3 +26,9 @@ To insert edge with BiCore-Index-Ins*:
 
 To remove edge with BiCore-Index-Rem*:
 ./abcore -BiCore-Index-Rem* path_to_graph vertex_1 vertex_2 (for example: ./abcore -BiCore-Index-Rem* ../data/example 3 7)
+
+To insert edge with ParallelIns:
+./abcore -ParallelIns path_to_graph vertex_1 vertex_2 num_cores (for example: ./abcore -BiCore-Index-Ins* ../data/example 3 6 20)
+
+To remove edge with ParallelRem:
+./abcore -ParallelRem path_to_graph vertex_1 vertex_2 num_cores (for example: ./abcore -BiCore-Index-Rem* ../data/example 3 7 20)
