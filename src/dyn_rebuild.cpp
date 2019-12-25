@@ -3385,7 +3385,6 @@ namespace Dyn_rebuild
 			g.left_index[u].pop_back();
 			g.right_index[v].pop_back();
 		}
-		//build_bicore_index(g, bicore_index_u, bicore_index_v);
 		chrono::duration<double> elapsed_seconds = end - start;
 		return elapsed_seconds.count();
 	}
