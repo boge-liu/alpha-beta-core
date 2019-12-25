@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
 		chrono::duration<double> time = end - start;
 		cout << "query time: " << time.count() << endl;
 	}
-	else if (exec_type == "-Insert") {
+	else if (exec_type == "-BiCore-Index-Ins") {
 		BiGraph g(argv[2]);
 		coreIndexKCore(g);
 		vector<vector<bicore_index_block*>> bicore_index_u; vector<vector<bicore_index_block*>> bicore_index_v;
@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
 		auto time = Dyn_rebuild::update_bicore_index_with_limit_swap(g, bicore_index_u, bicore_index_v, stoi(argv[3]), stoi(argv[4]), true);
 		cout << "BiCore-Index-Ins running time: " << time << endl;
 	}
-	else if (exec_type == "-Remove") {
+	else if (exec_type == "-BiCore-Index-Rem") {
 		BiGraph g(argv[2]);
 		coreIndexKCore(g);
 		vector<vector<bicore_index_block*>> bicore_index_u; vector<vector<bicore_index_block*>> bicore_index_v;
@@ -80,7 +80,7 @@ int main(int argc, char **argv) {
 		auto time = Dyn_rebuild::update_bicore_index_with_limit_swap(g, bicore_index_u, bicore_index_v, stoi(argv[3]), stoi(argv[4]), false);
 		cout << "BiCore-Index-Rem running time: " << time << endl;
 	}
-	else if (exec_type == "-Insert*") {
+	else if (exec_type == "-BiCore-Index-Ins*") {
 		BiGraph g(argv[2]);
 		coreIndexKCore(g);
 		vector<vector<bicore_index_block*>> bicore_index_u; vector<vector<bicore_index_block*>> bicore_index_v;
@@ -88,13 +88,29 @@ int main(int argc, char **argv) {
 		auto time = Dyn_rebuild::update_bicore_index_swap_with_dfs(g, bicore_index_u, bicore_index_v, stoi(argv[3]), stoi(argv[4]), true);
 		cout << "BiCore-Index-Ins* running time: " << time << endl;
 	}
-	else if (exec_type == "-Remove*") {
+	else if (exec_type == "-BiCore-Index-Rem*") {
 		BiGraph g(argv[2]);
 		coreIndexKCore(g);
 		vector<vector<bicore_index_block*>> bicore_index_u; vector<vector<bicore_index_block*>> bicore_index_v;
 		build_bicore_index(g, bicore_index_u, bicore_index_v);
 		auto time = Dyn_rebuild::update_bicore_index_swap_with_dfs(g, bicore_index_u, bicore_index_v, stoi(argv[3]), stoi(argv[4]), false);
 		cout << "BiCore-Index-Rem* running time: " << time << endl;
+	}
+	else if (exec_type == "-ParallelIns") {
+		BiGraph g(argv[2]);
+		coreIndexKCore(g);
+		vector<vector<bicore_index_block*>> bicore_index_u; vector<vector<bicore_index_block*>> bicore_index_v;
+		build_bicore_index(g, bicore_index_u, bicore_index_v);
+		auto time = Dyn_rebuild::update_bicore_index_with_limit_swap_dfs_parallel(g, bicore_index_u, bicore_index_v, stoi(argv[3]), stoi(argv[4]), true, stoi(argv[5]));
+		cout << "ParallelIns running time: " << time << endl;
+	}
+	else if (exec_type == "-ParallelRem") {
+		BiGraph g(argv[2]);
+		coreIndexKCore(g);
+		vector<vector<bicore_index_block*>> bicore_index_u; vector<vector<bicore_index_block*>> bicore_index_v;
+		build_bicore_index(g, bicore_index_u, bicore_index_v);
+		auto time = Dyn_rebuild::update_bicore_index_with_limit_swap_dfs_parallel(g, bicore_index_u, bicore_index_v, stoi(argv[3]), stoi(argv[4]), false, stoi(argv[5]));
+		cout << "ParallelRem running time: " << time << endl;
 	}
 	else {
 		cout << "illegal arguments" << endl;
